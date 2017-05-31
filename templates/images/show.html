@@ -1,0 +1,23 @@
+{% extends "base/base.html" %}
+{% block title %}· Fotogenius · {{ object.title }}{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>{{ image.title }}</h3>
+                <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-responsive">
+                <p class="text-right">Subida por: {{ image.user.username }}</p>
+            </div>
+            <div class="col-md-12">
+                <h1>Comentarios</h1>
+                {% for comment in comments  %}
+                    <p></p>
+                {% endfor %}
+                {% if user.is_authenticated %}
+                    {% include "includes/_form.html" with form=form %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

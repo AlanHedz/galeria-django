@@ -1,0 +1,60 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}Social{% endblock title %}</title>
+        <link href="https://fonts.googleapis.com/css?family=Galada" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="nav-padding white">
+            <div class="row centert-block float-none">
+                <div class="col-md-4">
+                    <ul class="">
+                        <li><a href="{% url 'index' %}" class="logo">Fotogenius</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="rect-nav">
+                        <li><a href="{% url 'index' %}">Inicio</a></li>
+                        {% if user.is_authenticated %}
+                            <li><a href="#">Upload</a></li>
+                            <li><a href="#">Seguir</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul>
+                        {% if user.is_authenticated %}
+                            <li><a href="#">Mis imagenes</a></li>
+                            <li>
+                                <a href="#">
+                                    <div class="dropdown show">
+                                        <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                            {{request.user}}
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="padding-left: 10px;">
+                                            <a href="#" class="dropdown-item">Cuenta</a>
+                                            <a href="{% url 'user:logout' %}" class="dropdown-item">Salir</a>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li style="padding-top:5px;"><a href="{% url 'user:login' %}">Login</a></li>
+                            <li style="padding-top:5px;"><a href="{% url 'user:register' %}">Register</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block content %}{% endblock content %}
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </body>
+</html>
