@@ -1,0 +1,4 @@
+<form action="{% url 'images:delete' image.id %}" method="POST" class="inline-block link">
+	{% csrf_token %}
+	<input type="submit" class="red-text" value="Eliminar">
+</form>

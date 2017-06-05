@@ -3,19 +3,19 @@
 {% block title %}· Fotogenius ·{% endblock title %}
 
 {% block content %}
-    <h1 class="text-center">Fotogenius</h1>
-    <p class="text-center medium">
-        Sube tus mejores fotos, compartelas con tus amigos o sigue a tus amigos, las mejores fotos seran publicada al inicio de la pagina, !Que esperas <b>registrate</b>!
-    </p>
-    <div class="container">
-        <div class="row">
-            {% for image in images  %}
-                <div class="col-md-12">
-                    <h3>{{ image.title }}</h3>
-                    <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-responsive">
-                    <p>Subida por: {{ image.user.username }}</p>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
+	<h1 class="text-center">Fotogenius</h1>
+	<p class="text-center medium">
+		Sube tus mejores fotos, compartelas con tus amigos o sigue a tus amigos, las mejores fotos seran publicada al inicio de la pagina, !Que esperas <b>registrate</b>!
+	</p>
+	<div class="container">
+		<div class="row">
+			{% for image in images  %}
+				<div class="col-md-12">
+					<h3>{{ image.title }}</h3>
+					<img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-responsive">
+					<p>Subida por: {{ image.user.username }}</p>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
 {% endblock content %}

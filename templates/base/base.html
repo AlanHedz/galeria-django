@@ -12,7 +12,7 @@
     </head>
     <body>
         <nav class="nav-padding white">
-            <div class="row centert-block float-none">
+            <div class="row center-block float-none">
                 <div class="col-md-4">
                     <ul class="">
                         <li><a href="{% url 'index' %}" class="logo">Fotogenius</a></li>
@@ -22,7 +22,7 @@
                     <ul class="rect-nav">
                         <li><a href="{% url 'index' %}">Inicio</a></li>
                         {% if user.is_authenticated %}
-                            <li><a href="#">Upload</a></li>
+                            <li><a href="{% url 'images:create' %}">Upload</a></li>
                             <li><a href="#">Seguir</a></li>
                         {% endif %}
                     </ul>
@@ -30,7 +30,7 @@
                 <div class="col-md-4">
                     <ul>
                         {% if user.is_authenticated %}
-                            <li><a href="#">Mis imagenes</a></li>
+                            <li><a href="{% url 'user:my_images' %}">Mis imagenes</a></li>
                             <li>
                                 <a href="#">
                                     <div class="dropdown show">
@@ -56,5 +56,6 @@
         {% block content %}{% endblock content %}
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        {% block scripts %}{% endblock scripts %}
     </body>
 </html>

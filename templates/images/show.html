@@ -1,23 +1,60 @@
 {% extends "base/base.html" %}
+{% load staticfiles %}
 {% block title %}· Fotogenius · {{ object.title }}{% endblock title %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h3>{{ image.title }}</h3>
-                <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-responsive">
-                <p class="text-right">Subida por: {{ image.user.username }}</p>
-            </div>
-            <div class="col-md-12">
-                <h1>Comentarios</h1>
-                {% for comment in comments  %}
-                    <p></p>
-                {% endfor %}
-                {% if user.is_authenticated %}
-                    {% include "includes/_form.html" with form=form %}
-                {% endif %}
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h3>{{ image.title }}</h3>
+				<img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-responsive">
+				<div class="row">
+					<div class="col-md-6">
+						<p>Subida por: {{ image.user.username }}</p>
+					</div>
+					<div class="col-md-6 text-right">
+						<input type="button" id='like' name='{{ image.slug }}' value="Me gusta">
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 tr">
+				<h1>Comentarios</h1>
+				{% for comment in comments  %}
+					<p>Usuario: {{ comment.user.username }}</p>
+					<div>
+						{{comment.text}}
+					</div>
+				{% endfor %}
+				{% if user.is_authenticated %}
+					<form method='POST'>
+						{% csrf_token %}
+						{% include "includes/_form.html" with form=form %}
+						<div class='top-space text-right'>
+							<button type='submit' class='btn-success'>Comentar</button>
+						</div>
+					</form>
+				{% endif %}
+			</div>
+		</div>
+	</div>
 {% endblock content %}
+
+{% block scripts %}
+	<script>
+	$('#like').click(function(){
+		$.ajax({
+			type: "POST",
+			url: "{% url 'images:like' image.slug %}",
+			data: {'slug': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+			dataType: "json",
+			success: function(response){
+				alert(response.message);
+				alert('La imagen tiene ahora ' + response.likes_count + " likes")
+			},
+			error: function(rs, e){
+				alert(rs.responseText)
+			}
+		})
+	})
+	</script>
+{% endblock scripts %}

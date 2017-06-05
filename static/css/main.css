@@ -27,6 +27,14 @@ nav ul li{
 	margin-right: 1em;
 	font-size: 1.1em;
 }
+form.link{
+    display: inline-block;
+}
+form.link input[type="submit"]{
+    background-color: transparent;
+    border: none;
+    color: rgba(241, 44, 17, 0.98);
+}
 .medium{
     font-size: 1.5em;
 }
@@ -51,6 +59,9 @@ nav ul li{
     text-decoration: none !important;
 
 }
+.large-padding{
+    padding: 10px 15px;
+}
 .nav-padding{
 	padding: 18px 15px;
 }
@@ -60,11 +71,37 @@ nav ul li{
 .black{
     background-color: #222;
 }
+.red-text, .red-text:hover{
+    color: red;
+}
+.orange-text, .orange-text:hover{
+    color: #EB8600;
+}
 .float-none{
     float: none;
 }
 .textarea-form{
     resize: none;
+}
+a, a:hover, a:visited{
+    text-decoration: none
+}
+.boder{
+    border: solid 1px #eee;
+}
+.tr:nth-of-type(odd){
+    background-color: #eee;
+}
+.inline-block{
+    display: inline-block;
+}
+.container-images{
+    margin-right: auto;
+    margin-left: auto;
+    width: 60% !important;
+}
+.right-space{
+    margin-right: 1em;
 }
 /*.navbar{
     background-color: #f7f7f7 !important;

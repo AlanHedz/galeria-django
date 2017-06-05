@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="container white-card top-space">
-        <h1>Imagen nueva</h1>
+        <h1>Editar imagen {{ image.title }}</h1>
         <form method="post" enctype="multipart/form-data">
             {% if form.errors %}
                 <div class="alert alert-danger" role="alert">
